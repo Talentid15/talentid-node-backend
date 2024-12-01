@@ -27,7 +27,7 @@ router.get("/fetchAllusers",fetchAllusers);
 
 router.get("/getUserHistoryData/:userId",getUserHistoryData);
 
-router.delete("/deleteUserAccount",deleteUserAccount);
+router.post("/deleteUserAccount",deleteUserAccount);
 
 router.post("/updateUserData",updateUserData);
 
