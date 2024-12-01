@@ -60,6 +60,8 @@ export function getDateDifference(inputDate) {
     // Convert milliseconds to days
     const differenceInDays = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
 
+    console.log("diff in days ", differenceInDays);
+
     if(differenceInDays >360){
 
         return false;
