@@ -528,21 +528,42 @@ const fetchAllusers = async (req, res) => {
 // delete the users account 
 
 const deleteUserAccount = async (req, res) => {
+
   try {
-    const { id } = req.query; // Get the user ID from the query parameters
+
+    const { userId,adminUserId } = req.body; // Get the user ID from the query parameters
 
     // Check if ID is provided
 
-    if (!id) {
+    if (!id || !userId) {
+
       return res.status(400).json({
         success: false,
-        message: 'User ID is required to delete the account.',
+        message: 'all fields required to delete the account.',
       });
+
     }
 
-    // Find and delete the user
 
-    const userDetails = await User.findById(id);
+    // first check the admin is correct or not 
+
+    const adminData = await User.findOne({_id:adminUserId});
+
+    if(!adminData){
+
+
+      return res.status(400).json({
+
+        success: false,
+        message: 'Admin user not found.',
+
+      })
+
+    }
+
+    // Find and delete the user 
+
+    const userDetails = await User.findById(userId);
 
     // If user is not found
 
